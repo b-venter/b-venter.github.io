@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { DataService } from '../data.service';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
-export class BlogComponent implements OnInit, OnDestroy, OnChanges {
+export class BlogComponent implements OnInit, OnDestroy {
   article!: Article;
   articleList: Article[];
   private subdata: any;
@@ -90,11 +90,6 @@ export class BlogComponent implements OnInit, OnDestroy, OnChanges {
         images[i].style.width = '50%';
       }
     }
-  }
-
-  ngOnChanges(){
-    this.getBlogArticle(this.id);
-    alert(this.id);
   }
 
   
