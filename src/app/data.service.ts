@@ -11,7 +11,11 @@ import { ARTICLE } from './data';
 })
 export class DataService {
 
-  getArticle(): Observable<Article[]> {
+  getArticle(x: number): Observable<Article> {
+    return of(ARTICLE[x]); /**As per import**/
+  }
+
+  getArticles(): Observable<Article[]> {
     return of(ARTICLE); /**As per import**/
   }
 

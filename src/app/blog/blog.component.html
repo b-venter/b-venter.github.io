@@ -7,24 +7,24 @@
 <div *ngSwitchCase="false" class="blog-head">
     <div class="blog-bg">
         <div class="article-general">
-            <h1><br>{{ article[id].themeText }}</h1>
-            <h4>{{ article[id].author }} - {{ article[id].date | date:'short' }} </h4>
-            <p class="article-summary"> {{ article[id].summary }} </p>
-            <img src="{{article[id].themePic}}" class="aticle-theme-pic"><br><span class="article-theme-attr">{{ article[id].attrPic }}</span><br><br>
-            <div class="mat-body-2 article" [innerHTML]="article[id].article">{{ imgStyle() }}</div>
+            <h1><br>{{ article.themeText }}</h1>
+            <h4>{{ article.author }} - {{ article.date | date:'short' }} </h4>
+            <p class="article-summary"> {{ article.summary }} </p>
+            <img src="{{article.themePic}}" class="aticle-theme-pic"><br><span class="article-theme-attr">{{ article.attrPic }}</span><br><br>
+            <div class="mat-body-2 article" [innerHTML]="article.article">{{ imgStyle() }}</div>
         </div>
     </div>
 </div>
 <br>
 <div *ngSwitchCase="true" class="blog-carousel-space">
-    <mat-card *ngFor="let article of article" class="blog-card">
+    <mat-card *ngFor="let articleL of articleList" class="blog-card">
         <mat-card-header>
-            <mat-card-title [routerLink]='"/blog/" + article.id' class="blog-link" matTooltip={{article.themeText}}>{{ article.themeText }}</mat-card-title>
-            <mat-card-subtitle>{{ article.summary }}</mat-card-subtitle>
+            <mat-card-title [routerLink]='"/blog/" + articleL.id' class="blog-link" matTooltip={{articleL.themeText}}>{{ articleL.themeText }}</mat-card-title>
+            <mat-card-subtitle>{{ articleL.summary }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src={{article.themePic}} alt="" class="blog-card-image">
+        <img mat-card-image src={{articleL.themePic}} alt="" class="blog-card-image">
         <mat-card-content>
-            <p> {{ delHTML(article.article).slice(0, 130) }}... </p>
+            <p> {{ delHTML(articleL.article).slice(0, 130) }}... </p>
         </mat-card-content>
     </mat-card>
 </div>

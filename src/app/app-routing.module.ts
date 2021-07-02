@@ -15,8 +15,8 @@ const routerOptions: ExtraOptions = {
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {animation: 'HomePage'} },
-  { path: 'blog/:id', component: BlogComponent },
-  { path: 'blog', component: BlogComponent, data: {animation: 'BlogPage'} },
+  { path: 'blog/:id', component: BlogComponent, pathMatch: 'full' },
+  { path: 'blog', component: BlogComponent, pathMatch: 'full', data: {animation: 'BlogPage'} },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

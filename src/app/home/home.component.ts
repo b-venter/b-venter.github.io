@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   getBlogArticle(){
-    this.subdata = this.dataService.getArticle().subscribe( 
+    this.subdata = this.dataService.getArticles().subscribe( 
       article => {this.article = article}
     );
     if (this.article.length > 3) {

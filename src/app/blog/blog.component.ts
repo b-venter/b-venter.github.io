@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Article } from '../datainterface';
 import { DataService } from '../data.service';
@@ -9,8 +10,9 @@ import { DataService } from '../data.service';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
-export class BlogComponent implements OnInit, OnDestroy {
-  article: Article[];
+export class BlogComponent implements OnInit, OnDestroy, OnChanges {
+  article!: Article;
+  articleList: Article[];
   private subdata: any;
 
   /* Linked to getting /:id */
@@ -24,46 +26,55 @@ export class BlogComponent implements OnInit, OnDestroy {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute, //Needed to retrieve :id
+    private location: Location, //Needed for new url if :id is invalid
     ) 
     { 
-
-    this.article = []; /**Due to Strict Typing, required to initialise.**/
     this.slist = true; //By default, show list of blogs.
+    this.articleList = [];
   
   }
 
   ngOnInit() {
 
     /* To get id in blog/:id */
+    this.getID();
+
+    this.getBlogs();
+  }
+
+  getID(){
     this.sub = this.route.params.subscribe(
-      params => {this.id = +params['id']}
-    );
-
-    this.getBlogArticle();
+      params => this.id = +params['id'],
+      );
   }
 
-  getBlogArticle(){
-    this.subdata = this.dataService.getArticle().subscribe( 
-      article => this.article = article,
-      () => console.log("Error getting article."),
-      () => this.showList()
-    );
-  }
-
-  /* Test whether it is /blog or /blog/:id. And then whether id.
-   * True results in a list of blogs showing. False results in viewing the selected blog */
-  showList(){
-    //Test if /:id is present
+  getBlogs(){
     if (isNaN(this.id) == false) {
-      //Test if id has data in database. Return true if no data.
-      if (this.article[this.id].id == undefined) {
-        this.slist = true;
-      } else {
-        this.slist = false;
-      }
-    }else{
-      this.slist = true;
+      this.slist = false;
+      this.getBlogArticle(this.id);
+    } else {
+      this.getBlogList();        
     }
+  }
+
+  getBlogArticle(x: number){
+    this.subdata = this.dataService.getArticle(x).subscribe( 
+      article => this.article = article,
+    );
+
+    if (this.article == undefined) {
+      this.slist = true;
+      this.getBlogList();
+      this.location.go("./blog");
+    }
+  }
+
+  getBlogList(){
+    this.subdata = this.dataService.getArticles().subscribe( 
+      article => this.articleList = article,
+      () => console.log("Error getting article list."),
+      () => this.slist = true,
+    );
   }
 
   delHTML(x: string) {
@@ -79,6 +90,11 @@ export class BlogComponent implements OnInit, OnDestroy {
         images[i].style.width = '50%';
       }
     }
+  }
+
+  ngOnChanges(){
+    this.getBlogArticle(this.id);
+    alert(this.id);
   }
 
   
