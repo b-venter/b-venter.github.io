@@ -44,6 +44,12 @@
     mask-size: contain;*/
 }
 
+.article-theme-attr {
+    color: #8595a0;
+    font-size: small;
+    font-style: italic;
+}
+
 .blog-bg {
     background-color: #3f7eab;
 }
@@ -109,6 +115,9 @@
 
 .blog-card-image {
     background-size: cover;
+    height: 20vh;
+    object-fit: cover;
+    object-position: left top;
 }
 
 .blog-link {

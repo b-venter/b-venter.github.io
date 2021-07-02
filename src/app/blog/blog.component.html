@@ -1,4 +1,4 @@
-<div [ngSwitch]="showList()">
+<div [ngSwitch]="slist">
 <div class="menu">
     <span class="menu-item" [routerLink]='"/home"'>Home</span><span class="menu-item" [routerLink]='"/home"' [fragment]='"about"'>About</span><span *ngSwitchCase="false" [routerLink]='"/blog"' class="menu-item">Blog list</span><span class="menu-item">Search</span>
 </div>
@@ -10,7 +10,7 @@
             <h1><br>{{ article[id].themeText }}</h1>
             <h4>{{ article[id].author }} - {{ article[id].date | date:'short' }} </h4>
             <p class="article-summary"> {{ article[id].summary }} </p>
-            <img src="{{article[id].themePic}}" class="aticle-theme-pic"><br><br>
+            <img src="{{article[id].themePic}}" class="aticle-theme-pic"><br><span class="article-theme-attr">{{ article[id].attrPic }}</span><br><br>
             <div class="mat-body-2 article" [innerHTML]="article[id].article">{{ imgStyle() }}</div>
         </div>
     </div>

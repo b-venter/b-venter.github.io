@@ -94,6 +94,9 @@
 
 .blog-card-image {
     background-size: cover;
+    height: 20vh;
+    object-fit: cover;
+    object-position: left top;
 }
 
 .blog-link {

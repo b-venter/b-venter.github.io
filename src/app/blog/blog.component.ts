@@ -16,6 +16,9 @@ export class BlogComponent implements OnInit, OnDestroy {
   /* Linked to getting /:id */
   id!: number;
   private sub: any;
+
+  //Show list or article individual
+  slist: boolean;
   
 
   constructor(
@@ -25,6 +28,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     { 
 
     this.article = []; /**Due to Strict Typing, required to initialise.**/
+    this.slist = true; //By default, show list of blogs.
   
   }
 
@@ -40,16 +44,25 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   getBlogArticle(){
     this.subdata = this.dataService.getArticle().subscribe( 
-      article => {this.article = article}
+      article => this.article = article,
+      () => console.log("Error getting article."),
+      () => this.showList()
     );
   }
 
-  /* Test whether it is /blog or /blog/:id */
+  /* Test whether it is /blog or /blog/:id. And then whether id.
+   * True results in a list of blogs showing. False results in viewing the selected blog */
   showList(){
+    //Test if /:id is present
     if (isNaN(this.id) == false) {
-      return false;
+      //Test if id has data in database. Return true if no data.
+      if (this.article[this.id].id == undefined) {
+        this.slist = true;
+      } else {
+        this.slist = false;
+      }
     }else{
-      return true;
+      this.slist = true;
     }
   }
 
