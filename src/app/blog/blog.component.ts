@@ -5,15 +5,20 @@ import { Location } from '@angular/common';
 import { Article } from '../datainterface';
 import { DataService } from '../data.service';
 
+
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
+
 export class BlogComponent implements OnInit, OnDestroy {
   article!: Article;
   articleList: Article[];
   private subdata: any;
+
+  code :string = "echo 'this'";
 
   /* Linked to getting /:id */
   id!: number;
@@ -88,6 +93,14 @@ export class BlogComponent implements OnInit, OnDestroy {
     for (let i = 1; i < images.length; i++){
       if (images[i].className != 'aticle-theme-pic') {
         images[i].style.width = '50%';
+      }
+    }
+
+    var pre = document.body.getElementsByTagName("pre");
+    for (let i = 0; i < pre.length; i++){
+      if (pre[i].className != 'aticle-theme-pic') {
+        pre[i].style.overflow = 'auto';
+        pre[i].style.color = 'black';
       }
     }
   }

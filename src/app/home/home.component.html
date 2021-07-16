@@ -1,5 +1,5 @@
 <div [ngClass]="menuClass">
-    <span class="menu-item" [routerLink]='"."' [fragment]='"blogs"'>Blog</span><span class="menu-item" [routerLink]='"."' [fragment]='"about"'>About</span><span class="menu-item">Search</span>
+    <span class="menu-item" [routerLink]='"."' [fragment]='"blogs"'>Blog</span><span class="menu-item" [routerLink]='"."' [fragment]='"about"'>About</span><span class="menu-item" (click)="openDialog()">Search</span>
 </div>
 <div [ngClass]="headerClass">
     <h1>Brian Venter</h1>
