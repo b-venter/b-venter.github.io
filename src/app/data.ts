@@ -157,4 +157,16 @@ export const ARTICLE: Article[] = [
             {"type": "p", "content": "Still in progress"},
         ]
     },
+    {
+        "id": 4,
+        "themePic": "/assets/img/2-theme.png",
+        "attrPic": "Photo by Brian Venter",
+        "themeText": "MXONE Backup",
+        "author": "Brian Venter",
+        "date": "2025-05-09T15:23:30.781Z",
+        "summary": "Troubleshooting alarm",
+        "article":[
+            {"type": "p", "content": "Still in progress"},
+        ]
+    },
   ];

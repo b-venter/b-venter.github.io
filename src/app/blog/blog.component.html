@@ -5,6 +5,7 @@
 </div>
 
 <!--If you put *ngSwitchCase as [ngSwitchCase], the page will not render.-->
+<!--Individual article-->
 <div *ngSwitchCase="false" class="blog-head">
     <div class="blog-bg">
         <div class="article-general">
@@ -28,8 +29,8 @@
                     <blockquote *ngIf="sub.type == 'code-bash'" class="mat-body-2 article">
                         <pre class="code">
                             <code class='language-bash' [innerHTML]="sub.content"></code>
-                            <button class="copy-code" mat-icon-button matTooltip="Copy code" aria-label="Copy content">
-                                <mat-icon [cdkCopyToClipboard]="sub.content">content_copy</mat-icon>
+                           <button mat-mini-fab class="copy-code" matTooltip="Copy code" aria-label="Copy content" [cdkCopyToClipboard]="sub.content" color="primary">
+                                <mat-icon>content_copy</mat-icon>
                             </button>
                         </pre>
                     </blockquote>
@@ -37,18 +38,28 @@
         </div>
     </div>
 </div>
+
 <br>
-<div *ngSwitchCase="true" class="blog-carousel-space">
-    <mat-card *ngFor="let articleL of articleList" class="blog-card">
-        <mat-card-header>
-            <mat-card-title [routerLink]='"/blog/" + articleL.id' class="blog-link" matTooltip={{articleL.themeText}}>{{ articleL.themeText }}</mat-card-title>
-            <mat-card-subtitle class="blog-summary">{{ articleL.summary }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src={{articleL.themePic}} alt="" class="blog-card-image">
-        <mat-card-content>
-            <p> {{ delHTML(articleL.article[0].content).slice(0, 130) }}... </p>
-        </mat-card-content>
-    </mat-card>
+
+<!--Blog list-->
+<div *ngSwitchCase="true">
+    <mat-grid-list cols="3" rowHeight="50vh" class="blog-carousel-space">
+        @for (articleL of articleList; track articleL) {
+          <mat-grid-tile>
+            <mat-card class="blog-card">
+                <mat-card-header>
+                    <mat-card-title [routerLink]='"/blog/" + articleL.id' class="blog-link" matTooltip={{articleL.themeText}}>{{ articleL.themeText }}</mat-card-title>
+                    <mat-card-subtitle class="blog-summary">{{ articleL.summary }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src={{articleL.themePic}} alt="" class="blog-card-image">
+                <mat-card-content>
+                    <p> {{ delHTML(articleL.article[0].content).slice(0, 130) }}... </p>
+                </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        }
+      </mat-grid-list>
+      
 </div>
 
 </div>

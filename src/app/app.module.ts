@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
@@ -35,6 +36,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatDialogModule,
     MatButtonModule,
     ClipboardModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
