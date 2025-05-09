@@ -145,4 +145,16 @@ export const ARTICLE: Article[] = [
             {"type": "p", "content": "That completes Part 2: our Resource Group is created, as is our Networking - complete with VPN access. In the last part (<a href='./blog/3'>Part 3</a>) we will copy across the MXONE Azure image and use it to get an MXONE up and running."},
         ]
     },
+    {
+        "id": 3,
+        "themePic": "/assets/img/2-theme.png",
+        "attrPic": "Photo by Brian Venter",
+        "themeText": "MXONE Deploy in Azure",
+        "author": "Brian Venter",
+        "date": "2025-05-09T12:45:30.781Z",
+        "summary": "Setting up Mitel's MXONE on Azure with Linux CLI - Part 3",
+        "article":[
+            {"type": "p", "content": "Still in progress"},
+        ]
+    },
   ];
