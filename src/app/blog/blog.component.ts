@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,12 +13,10 @@ import { DataService } from '../data.service';
   styleUrls: ['./blog.component.css']
 })
 
-export class BlogComponent implements OnInit, OnDestroy {
+export class BlogComponent implements OnInit, AfterViewInit, OnDestroy {
   article!: Article;
   articleList: Article[];
   private subdata: any;
-
-  code :string = "echo 'this'";
 
   /* Linked to getting /:id */
   id!: number;
@@ -45,6 +43,9 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.getID();
 
     this.getBlogs();
+  }
+
+  ngAfterViewInit() {
   }
 
   getID(){
@@ -86,25 +87,6 @@ export class BlogComponent implements OnInit, OnDestroy {
     x = x.replace(/\<.*?>/g, '');
     return x;
   }
-
-  /* Since we are pulling the article images in by [innerHTML], we need to manually set width. Doesn't happen with ccs */
-  imgStyle(){
-    var images = document.body.getElementsByTagName("img");
-    for (let i = 1; i < images.length; i++){
-      if (images[i].className != 'aticle-theme-pic') {
-        images[i].style.width = '50%';
-      }
-    }
-
-    var pre = document.body.getElementsByTagName("pre");
-    for (let i = 0; i < pre.length; i++){
-      if (pre[i].className != 'aticle-theme-pic') {
-        pre[i].style.overflow = 'auto';
-        pre[i].style.color = 'black';
-      }
-    }
-  }
-
   
   ngOnDestroy() {
     this.sub.unsubscribe(); /* Actually not needed for Router, but not a bad practice.*/

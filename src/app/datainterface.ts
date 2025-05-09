@@ -1,3 +1,9 @@
+export interface Subpart {
+  "type": string;
+  "content": string;
+  "table"?: string[][];
+}
+
 export interface Article {
   "id": number;
   "themePic": string;
@@ -6,5 +12,5 @@ export interface Article {
   "author": string;
   "date": string;
   "summary": string;
-  "article": string;
+  "article": Subpart[];
 }

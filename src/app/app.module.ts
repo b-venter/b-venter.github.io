@@ -12,7 +12,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatButtonModule } from '@angular/material/button';
+
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { MatDialog } from '@angular/material/dialog';
     MatCardModule,
     MatIconModule,
     MatTooltipModule,
-    MatDialog,
+    MatDialogModule,
+    MatButtonModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

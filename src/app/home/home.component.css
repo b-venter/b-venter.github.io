@@ -2,7 +2,7 @@
 .menu {
     text-align: center;
     color: #3f7eab;
-    font-size: 2vw;
+    font-size: 2.5vmax;
     position: relative;
     margin-top: 10vh;
 }
@@ -41,7 +41,7 @@
 
 .motto {
     font-family:'Courier New', Courier, monospace;
-    font-size:1.5vw;
+    font-size:1.5vmax;
     color: darkslategray;
 }
 
@@ -54,12 +54,13 @@
 
 #blogs {
     background-color: #3f7eab;
-    height: 90vh;
+    height: 100%;
+    
 }
 
 #blogs h1 {
     text-align: center;
-    font-size:5vw;
+    font-size:5vmax;
     font-weight: lighter;
     margin-right: 5vh;
     margin-top: 5vh;
@@ -70,15 +71,19 @@
 
 .blog-link {
     cursor: pointer;
+    font-size:1.5vmax;
+    line-height: 1.5vmax;
 }
 
 .blog-carousel-space {
-    display: flex;
+    display:inline-flex;
+    align-content:flex-start;
     /*align-items: center;*/ /*Y axis*/
     justify-content: center; /*X axis*/
-    height: 30vh;
+    height: 100%;
     margin-left: 5vw;
     margin-right: 5vw;
+    margin-bottom: 2vmax;
 }
 
 .blog-card {
@@ -89,7 +94,7 @@
     min-width: 12vw;
     padding: 1vw;
     height: 20vw;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .blog-card-image {
@@ -103,8 +108,13 @@
     cursor: pointer;
 }
 
+.blog-summary {
+    font-size: 1vmax;
+    line-height: 1vmax;
+}
+
 #about {
-    height: 70vh;
+    height: 100%;
 }
 
 #about h2 {
@@ -130,7 +140,9 @@
     margin-top: 5vh;
     margin-left: 10vw;
     margin-right: 10vw;
-    font-size: 1vw;
+    font-size: 1.5vmax;
+    line-height: 1.5vmax;
+    font-weight: lighter;
 }
 
 #footer {

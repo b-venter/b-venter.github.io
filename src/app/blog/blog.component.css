@@ -3,7 +3,7 @@
     display: flex;
     text-align: center;
     color: #3f7eab;
-    font-size: 1vw;
+    font-size: 3vmin;
     position: relative;
     margin-top: 1vw;
     align-items:center; /*Y axis*/
@@ -110,7 +110,7 @@
     min-width: 12vw;
     padding: 1vw;
     height: 20vw;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .blog-card-image {
@@ -122,4 +122,44 @@
 
 .blog-link {
     cursor: pointer;
+    font-size:1.5vmax;
+    line-height: 1.5vmax;
+}
+
+.blog-summary {
+    font-size: 1vmax;
+    line-height: 1vmax;
+}
+ 
+ 
+.code {
+    white-space: pre-line;
+    text-align: left;
+    /*https://css-tricks.com/snippets/css/make-pre-text-wrap/*/
+    word-wrap: break-word;
+    color: black;
+    background-color: #92bcda;
+    border: 0.2vw solid #92bcda;
+    border-radius: 0.3vw;
+}
+
+@media screen and (orientation:portrait) {
+    .code {
+        width: 90vmin;
+    }
+ }
+@media screen and (orientation:landscape) {
+    .code {
+        width: 90vmax;
+    }
+ }
+
+.copy-code {
+    cursor: pointer;
+    color: gray;
+}
+
+.image {
+    width: 50%;
+    margin-left: 5vw;
 }

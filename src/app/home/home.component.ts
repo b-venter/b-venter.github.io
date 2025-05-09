@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Article } from '../datainterface';
 import { DataService } from '../data.service';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog'; //Modal
 
 @Component({
   selector: 'app-home',
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
     this.article = []; /**Due to Strict Typing, required to initialise. Can use ! to ignore**/
    }
@@ -53,9 +53,8 @@ export class HomeComponent implements OnInit {
     this.subdata.unsubscribe();
   }
 
-  //Search Dialog launch
   openDialog() {
-    const dialogRef = this.dialog.open(SearchDialog);
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -68,5 +67,4 @@ export class HomeComponent implements OnInit {
   selector: 'search-dialog',
   templateUrl: 'search-dialog.html',
 })
-export class SearchDialog {}
-
+export class DialogContentExampleDialog {}

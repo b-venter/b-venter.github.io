@@ -1,6 +1,7 @@
 <div [ngSwitch]="slist">
 <div class="menu">
-    <span class="menu-item" [routerLink]='"/home"'>Home</span><span class="menu-item" [routerLink]='"/home"' [fragment]='"about"'>About</span><span *ngSwitchCase="false" [routerLink]='"/blog"' class="menu-item">Blog list</span><span class="menu-item">Search</span>
+    <span class="menu-item" [routerLink]='"/home"'>Home</span><span class="menu-item" [routerLink]='"/home"' [fragment]='"about"'>About</span><span *ngSwitchCase="false" [routerLink]='"/blog"' class="menu-item">Blog list</span>
+    <!--TODO:<span class="menu-item">Search</span>-->
 </div>
 
 <!--If you put *ngSwitchCase as [ngSwitchCase], the page will not render.-->
@@ -11,8 +12,28 @@
             <h4>{{ article.author }} - {{ article.date | date:'short' }} </h4>
             <p class="article-summary"> {{ article.summary }} </p>
             <img src="{{article.themePic}}" class="aticle-theme-pic"><br><span class="article-theme-attr">{{ article.attrPic }}</span><br><br>
-            <div class="mat-body-2 article" [innerHTML]="article.article"></div>
-            <div>{{ imgStyle() }}</div>
+            <div *ngFor="let sub of article.article"> 
+                    <p *ngIf="sub.type == 'p'" class="mat-body-2 article"  [innerHTML]="sub.content"></p>
+                    <br *ngIf="sub.type == 'br'">
+                    <li *ngIf="sub.type == 'li'" class="mat-body-2 article"  [innerHTML]="sub.content"></li>
+                    <span *ngIf="sub.type == 'span'" class="mat-body-2 article"  [innerHTML]="sub.content"></span>
+                    <h1 *ngIf="sub.type == 'h1'" class="mat-body-2 article"  [innerHTML]="sub.content"></h1>
+                    <h2 *ngIf="sub.type == 'h2'" class="mat-body-2 article"  [innerHTML]="sub.content"></h2>
+                    <table *ngIf="sub.type == 'table-border-1'" style="border: solid; border-collapse: collapse" class="mat-body-2 article">
+                        <tr *ngFor="let table of sub.table; let i = index" style="border-bottom: solid;">
+                            <td *ngFor="let cell of table" [innerHTML]="cell" style="border-left: solid;"></td>
+                        </tr>
+                    </table>
+                    <img *ngIf="sub.type == 'img'" class="image"  [src]="sub.content">
+                    <blockquote *ngIf="sub.type == 'code-bash'" class="mat-body-2 article">
+                        <pre class="code">
+                            <code class='language-bash' [innerHTML]="sub.content"></code>
+                            <button class="copy-code" mat-icon-button matTooltip="Copy code" aria-label="Copy content">
+                                <mat-icon [cdkCopyToClipboard]="sub.content">content_copy</mat-icon>
+                            </button>
+                        </pre>
+                    </blockquote>
+            </div>
         </div>
     </div>
 </div>
@@ -21,11 +42,11 @@
     <mat-card *ngFor="let articleL of articleList" class="blog-card">
         <mat-card-header>
             <mat-card-title [routerLink]='"/blog/" + articleL.id' class="blog-link" matTooltip={{articleL.themeText}}>{{ articleL.themeText }}</mat-card-title>
-            <mat-card-subtitle>{{ articleL.summary }}</mat-card-subtitle>
+            <mat-card-subtitle class="blog-summary">{{ articleL.summary }}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src={{articleL.themePic}} alt="" class="blog-card-image">
         <mat-card-content>
-            <p> {{ delHTML(articleL.article).slice(0, 130) }}... </p>
+            <p> {{ delHTML(articleL.article[0].content).slice(0, 130) }}... </p>
         </mat-card-content>
     </mat-card>
 </div>

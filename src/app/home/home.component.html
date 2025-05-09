@@ -1,5 +1,6 @@
 <div [ngClass]="menuClass">
-    <span class="menu-item" [routerLink]='"."' [fragment]='"blogs"'>Blog</span><span class="menu-item" [routerLink]='"."' [fragment]='"about"'>About</span><span class="menu-item" (click)="openDialog()">Search</span>
+    <span class="menu-item" [routerLink]='"."' [fragment]='"blogs"'>Blog</span><span class="menu-item" [routerLink]='"."' [fragment]='"about"'>About</span>
+    <!--TODO:<span class="menu-item" (click)="openDialog()">Search</span>-->
 </div>
 <div [ngClass]="headerClass">
     <h1>Brian Venter</h1>
@@ -15,11 +16,11 @@
         <mat-card *ngFor="let latest of latest" class="blog-card">
             <mat-card-header>
                 <mat-card-title [routerLink]='"../blog/" + latest.id' class="blog-link" matTooltip={{latest.themeText}}>{{ latest.themeText }}</mat-card-title>
-                <mat-card-subtitle>{{ latest.summary }}</mat-card-subtitle>
+                <mat-card-subtitle class="blog-summary">{{ latest.summary }}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image src={{latest.themePic}} alt="" class="blog-card-image">
             <mat-card-content>
-                <p> {{ delHTML(latest.article).slice(0, 130) }}... </p>
+                <p> {{ delHTML(latest.article[0].content).slice(0, 130) }}... </p>
             </mat-card-content>
         </mat-card>
     </div>
@@ -29,15 +30,22 @@
     <br><br>
     <div class="small-header">
         <h2>About me</h2>
-            <p>I have been involved from the ground up in telecommunications, starting as an apprentice and doing copper cabling for PBX and LAN installations. 
-                I have worked on enterprise communications systems like the Ericsson MD110 up to its present form: Mitel's MXONE. SIP has supplanted H.323, IP 
-                has replaced TDM, and proprietary hardware has given way to containers: communication technology has moved from copper to cloud, and it has not 
-                always been predictable.
+        <p>
+            SIP has supplanted H.323 ... IP has replaced TDM ... and proprietary hardware has given way to open source: communication technology has moved from <b>copper to cloud</b>, 
+            and it has not always been predictable.
+        </p>    
+        <p>
+                I have been involved from the ground up in telecommunications, starting as an apprentice and doing copper cabling for PBX and LAN installations, 
+                I have enjoyed working on enterprise communications systems like the Ericsson MD110 up to its present form: Mitel's MXONE. Collaboration tools, contact 
+                centers and more have been thrown into the mix. Besides running my own <a href="https://matrix.org/" target=”_blank”>matrix homeserver</a>, I enjoy 
+                web development - previously with LAMP, but more recently with Angular, Go and ArangoDB - and continually look to improve my programming 
+                ability. In between are many things which catch my curiosity. This blog records all these digital encounters.
             </p>
             <p>
-                I currently consult for companies desiring to implement full collaboration solutions and contact centers. I run my own matrix homeserver, dabble 
-                in web development - previously with LAMP, but more recently with Angular, Echo and ArangoDB - and continually look to improve my programming 
-                ability. In between are many things which catch my curiosity. This blog records these digital encounters.
+                <!--https://icon-icons.com/icon/linkedin-logo-square/134016-->
+                I currently consult for companies desiring to implement full collaboration solutions and contact centers. Should you wish to consult me, feel free to
+                get in touch by means of my LinkedIn profile. <br>
+                <a href="https://www.linkedin.com/in/brian-venter-202833208" target=”_blank”><img src="/assets/linkedin_logo_square_icon_134016.png"></a>
             </p>
         </div>
 </div>
