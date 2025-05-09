@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Article } from '../datainterface';
 import { DataService } from '../data.service';
 
-import { MatDialog } from '@angular/material/dialog'; //Modal
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog'; //Modal
 
 @Component({
   selector: 'app-home',
