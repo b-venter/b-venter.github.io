@@ -26,6 +26,7 @@
                         </tr>
                     </table>
                     <img *ngIf="sub.type == 'img'" class="image"  [src]="sub.content">
+                    <img *ngIf="sub.type == 'imgX'" class="imageX"  [src]="sub.content">
                     <blockquote *ngIf="sub.type == 'code-bash'" class="mat-body-2 article">
                         <pre class="code">
                             <code class='language-bash' [innerHTML]="sub.content"></code>
